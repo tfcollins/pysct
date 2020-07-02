@@ -87,7 +87,7 @@ class XsctServer:
         if (xsct_executable is None) or (port is None):
             raise ValueError("xsct_executable and port must be non None.")
         start_server_command = 'xsdbserver start -port {}'.format(port)
-        start_command = '{} -eval "{}" -interactive'.format(xsct_executable, start_server_command)
+        start_command = [xsct_executable,'-eval',start_server_command,'-interactive']
         logger.info('Starting xsct server: %s', start_command)
         if verbose:
             stdout = None
@@ -353,8 +353,8 @@ if __name__ == '__main__':
             vivadoPath = 'C:/Xilinx/Vivado/2017.4/bin/vivado.bat'
         else: # Linux
             vivadoPath = 'vivado'
-            vivadoPath = '/home/beton/Xilinx/Vivado/2017.4/bin/vivado'
-            vivadoPath = 'tclsh'
+            vivadoPath = '/opt/Xilinx/Vivado/2019.1/bin/vivado'
+            #vivadoPath = 'tclsh'
     
         vivado = Vivado(vivadoPath, prompt='%')
         vivado.waitStartup()
@@ -362,7 +362,7 @@ if __name__ == '__main__':
         print(vivado.set_var('a', '5'))
         print(vivado.set_var('b', '[expr $a + 4]'))
         print("5+4={}".format(vivado.get_var('b')))
-        print("5+4={}".format(vivado.get_var('c')))
+        #print("5+4={}".format(vivado.get_var('c')))
         vivado.exit()
         
         
