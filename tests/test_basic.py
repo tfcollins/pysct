@@ -1,8 +1,10 @@
 import pytest
 from pysct.core import Vivado, XsctServer, Xsct
 
+vivado_version = '2019.1'
+
 def test_interp():
-    vivadoPath = '/opt/Xilinx/Vivado/2019.1/bin/vivado'
+    vivadoPath = "/opt/Xilinx/Vivado/"+vivado_version+"/bin/vivado"
     vivado = Vivado(vivadoPath, prompt='%')
     vivado.waitStartup()
     vivado.set_var('a', '5')
@@ -11,7 +13,7 @@ def test_interp():
 
 def test_xsdb():
     PORT = 4567
-    path = "/opt/Xilinx/SDK/2019.1/bin/xsdb"
+    path = "/opt/Xilinx/SDK/"+vivado_version+"/bin/xsdb"
     xsct_server = XsctServer(path, port=PORT, verbose=True)
     import time
     time.sleep(3)
@@ -27,7 +29,7 @@ def test_xsdb():
 
 def test_jtag_reset():
     PORT = 4567
-    path = "/opt/Xilinx/SDK/2019.1/bin/xsdb"
+    path = "/opt/Xilinx/SDK/"+vivado_version+"/bin/xsdb"
     xsct_server = XsctServer(path, port=PORT, verbose=True)
     import time
     time.sleep(3)
@@ -52,7 +54,7 @@ def test_jtag_reset():
 
 def test_jtag_load_sys_bad_sd():
     PORT = 4567
-    path = "/opt/Xilinx/SDK/2019.1/bin/xsdb"
+    path = "/opt/Xilinx/SDK/"+vivado_version+"/bin/xsdb"
     xsct_server = XsctServer(path, port=PORT, verbose=True)
     import time
     time.sleep(3)
@@ -104,7 +106,7 @@ def test_jtag_load_sys_bad_sd():
 
 def test_jtag_load_sys():
     PORT = 4567
-    path = "/opt/Xilinx/SDK/2019.1/bin/xsdb"
+    path = "/opt/Xilinx/SDK/"+vivado_version+"/bin/xsdb"
     xsct_server = XsctServer(path, port=PORT, verbose=True)
     import time
     time.sleep(3)
